@@ -1,3 +1,7 @@
+import 'intl';
+import 'intl/locale-data/jsonp/en';
+import 'intl/locale-data/jsonp/es';
+
 import React from 'react';
 import { AppLoading } from 'expo';
 import { StatusBar } from 'react-native';

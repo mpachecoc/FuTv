@@ -65,7 +65,16 @@ const Feed: React.FC<Props> = ({ feedItem }) => {
          ? NativeModules.SettingsManager.settings.AppleLanguages[0]
          : NativeModules.I18nManager.localeIdentifier;
 
-      return Intl.DateTimeFormat(deviceLanguage, options).format(date);
+
+      // Resolve "Invalid regular expression" error
+      if (Platform.OS === "android") {
+         if (typeof (Intl as any).__disableRegExpRestore === "function") {
+               (Intl as any).__disableRegExpRestore();
+         }
+      }
+
+      return Intl.DateTimeFormat('es-ES', options).format(date);
+      // return Intl.DateTimeFormat(deviceLanguage, options).format(date);
    }
 
    return (
